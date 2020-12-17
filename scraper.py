@@ -7,20 +7,21 @@ import time
 
 options = Options()
 options.binary_location = "/usr/bin/google-chrome"
+options.add_argument("window-size=1400,600")
 wb = wb.Chrome('/usr/lib/chromedriver', options=options)
 wb.get('https://shopee.com.my/Computer-Accessories-cat.174')
+time.sleep(2)
 wb.find_element_by_xpath("//button[contains(string(), 'English')]").click()
 
 links = []
 condition = True
 
 while condition:
-    time.sleep(5)
-
-    for level in range(0,50):
-        wb.execute_script("window.scrollTo(0, "+ str(level) +");")
-        level += 1000
-        time.sleep(1)
+    time.sleep(2)
+    total_height = int(wb.execute_script("return document.body.scrollHeight"))
+    for i in range(1,6):
+        wb.execute_script("window.scrollTo(0, "+ str(total_height/i) +");")
+        time.sleep(3)
     
     productsList = wb.find_elements_by_class_name('col-xs-2-4.shopee-search-item-result__item')
     for i in range(len(productsList)):
