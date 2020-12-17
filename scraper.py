@@ -16,8 +16,12 @@ condition = True
 
 while condition:
     time.sleep(5)
-    wb.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-    time.sleep(3)
+
+    for level in range(0,50):
+        wb.execute_script("window.scrollTo(0, "+ str(level) +");")
+        level += 1000
+        time.sleep(1)
+    
     productsList = wb.find_elements_by_class_name('col-xs-2-4.shopee-search-item-result__item')
     for i in range(len(productsList)):
         print(i)
