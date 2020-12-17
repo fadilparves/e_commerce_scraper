@@ -20,8 +20,8 @@ condition = True
 while condition:
     time.sleep(2)
     total_height = int(wb.execute_script("return document.body.scrollHeight"))
-    for i in np.arange(0.1,1,1):
-        wb.execute_script("window.scrollTo(0, "+ str(total_height*i +");")
+    for i in np.arange(0.1,1,0.1):
+        wb.execute_script("window.scrollTo(0, "+ str(total_height*i) +");")
         time.sleep(3)
     
     productsList = wb.find_elements_by_class_name('col-xs-2-4.shopee-search-item-result__item')
